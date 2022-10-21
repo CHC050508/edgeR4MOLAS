@@ -8,12 +8,15 @@ For pairwise statistical test for differential expressed genes (DEGs), users sho
 
 ## Input format
 1. **FeatureCount.csv (read count table)**
+
 |       | Sample1_Name | Sample2_Name | ... |
 | ------|:------------:|:------------:|:---:|
 | Gene1 | 10    | 20  | ... |
 | Gene2 | 100   | 150 | ... |
 | Gene3 | 0     | 15  | ... |
+
 2. **metadata.csv**
+
 | SampleID | Group |
 | ---------|:--------:|
 | Sample1_Name | GroupA |
