@@ -45,7 +45,7 @@ docker exec -w /data edgeR4MOLAS edgeR4MOLAS.R -a normalize
 
 3. **Statistical test**
 ```
-docker exec -w /data edgeR4MOLAS edgeR4MOLAS.R -a statistica_test -c 'GroupA,GroupB'
+docker exec -w /data edgeR4MOLAS edgeR4MOLAS.R -a statistical_test -c 'GroupA,GroupB'
 ```
 
 4. **Turn off edgeR4MOLAS**
