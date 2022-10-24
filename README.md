@@ -8,12 +8,15 @@ For pairwise statistical test for differential expressed genes (DEGs), users sho
 
 ## Input format
 1. **FeatureCount.csv (read count table)**
+
 |       | Sample1_Name | Sample2_Name | ... |
 | ------|:------------:|:------------:|:---:|
 | Gene1 | 10    | 20  | ... |
 | Gene2 | 100   | 150 | ... |
 | Gene3 | 0     | 15  | ... |
+
 2. **metadata.csv**
+
 | SampleID | Group |
 | ---------|:--------:|
 | Sample1_Name | GroupA |
@@ -31,7 +34,7 @@ For pairwise statistical test for differential expressed genes (DEGs), users sho
 # Establish default folders
 mkdir edgeR4MOLAS edgeR4MOLAS/InputData edgeR4MOLAS/OutputData
 ## move FeatureCount.csv and metadata.csv to edgeR4MOLAS/InputData
-mv edgeR4MOLAS
+cd edgeR4MOLAS
 docker run -itd -v $(pwd):/data/ --name edgeR4MOLAS t050508/edger4molas:v3_stable
 ```
 
