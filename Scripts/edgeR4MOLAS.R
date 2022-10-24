@@ -18,7 +18,7 @@ option_list = list(
               help="the name of compared groups, which should be 'GroupA,GroupB'", metavar = "character")
 )
 opt_parser = OptionParser(option_list=option_list)
-opt = parse_args(opt_parser, args = c("-a", "statistical_test", "-c", "DMSO,Fostamatinib-treated"))
+opt = parse_args(opt_parser)
 
 # Check arguments
 if(is.null(opt$analysis_type)){
