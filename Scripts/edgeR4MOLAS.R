@@ -21,7 +21,7 @@ opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
 # Check arguments
-if(is.null(opt$analysis_type)){
+if(!(opt$analysis_type %in% c("normalize","statistical_test"))){
   stop("Choose analysis type: 'normalize' or 'statistical_test'", call.=FALSE)
 } else if (is.null(opt$output_folder)) {
   stop("Set output folder path", call.=FALSE)
@@ -72,7 +72,7 @@ edgeR.Filter.Normalize <- function(Express, Group, NormMethod){
   
   # Normalization
   y <- calcNormFactors(y, method = NormMethod)
-  write.csv(cpm(y), paste0(opt$output_folder, "FeatureCount_filtered_normalized(", NormMethod, ")(", Group_name, ").csv"), quote = FALSE)
+  write.csv(cpm(y), paste0(opt$output_folder, "/FeatureCount_filtered_normalized(", NormMethod, ")(", Group_name, ").csv"), quote = FALSE)
   
   return(y)
 }
