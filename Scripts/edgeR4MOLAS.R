@@ -72,7 +72,7 @@ edgeR.Filter.Normalize <- function(Express, Group, NormMethod){
   
   # Normalization
   y <- calcNormFactors(y, method = NormMethod)
-  write.csv(cpm(y), paste0("OutputData/FeatureCount_filtered_normalized(", NormMethod, ")(", Group_name, ").csv"), quote = FALSE)
+  write.csv(cpm(y), paste0(opt$output_folder, "FeatureCount_filtered_normalized(", NormMethod, ")(", Group_name, ").csv"), quote = FALSE)
   
   return(y)
 }
@@ -101,7 +101,11 @@ glmLRTestPipe <- function(Target, Coefficient=NULL, Contrast=NULL, P.value, Log.
   TestResult.is.de <- decideTests(TestResult, p.value = P.value)
   print(summary(TestResult.is.de))
   FDR <- topTags(TestResult, n = nrow(TestResult), sort.by = "none")$table$FDR
-  Output_file <- cbind(TestResult$table, FDR, TestResult.is.de)
+  TestResult_FoldChange <- 2^TestResult$table$logFC
+  TestResult_CPM <- 2^TestResult$table$logCPM
+  
+  Output_file <- cbind(TestResult_FoldChange, TestResult_CPM, TestResult$table[,-c(1,2)], FDR)
+  colnames(Output_file) <- c("FoldChange", "CPM", "Likelihood_ratio_statistics", "PValue", "FDR")
   
   # File name
   SelectedContrast <- if(!is.null(Coefficient)){TestResult$comparison} else{paste0(Contrast, "*", colnames(design), collapse = "_")}
